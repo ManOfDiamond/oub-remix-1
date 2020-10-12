@@ -41,8 +41,8 @@ from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 # =================== CONSTANT ===================
 PP_TOO_SMOL = "`The image is too small`"
 PP_ERROR = "`Failure while processing the image`"
-NO_ADMIN = "`I am not an admin!`"
-NO_PERM = "`I don't have sufficient permissions!`"
+NO_ADMIN = "`MAKE ME THE ADMIN BEFORE GIVING ADMIN COMMANDS!`"
+NO_PERM = "`WTF DUDE?! GIVE ME PERMISSIONS!`"
 NO_SQL = "`Running on Non-SQL mode!`"
 
 CHAT_PP_CHANGED = "`Chat Picture Changed`"

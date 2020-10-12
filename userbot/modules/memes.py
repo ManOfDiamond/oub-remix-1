@@ -255,6 +255,8 @@ INSULT_STRINGS = [
     "Try to spend one day in a coffin and it will be yours forever.",
     "Hit Uranium with a slow moving neutron in your presence. It will be a worthwhile experience.",
     "You can be the first person to step on sun. Have a try.",
+    "Go to Venus, A breath taking atmosphere indeed",
+    "Aww, Are all dumbasses like you?"
 ]
 
 CONGOSTR = [
@@ -458,13 +460,13 @@ RUNS_STR = [
     "Runs far, far away from earth..",
     "Running faster than Bolt coz i'mma userbot !!",
     "Runs to Marie..",
-    "This Group is too cancerous to deal with.",
+    "This Group is too cancerous to deal with, I go away!",
     "Cya bois",
     "Kys",
     "I go away",
     "I am just walking off, coz me is too fat.",
     "I Fugged off!",
-    "Will run for chocolate.",
+    "Will run to sanity!.",
     "I run because I really like food.",
     "Running...\nbecause dieting is not an option.",
     "Wicked fast runnah",
@@ -739,7 +741,8 @@ SLAP_TEMPLATES = [
     "quickscoped {victim}.", "put {victim} in check-mate.",
     "RSA-encrypted {victim} and deleted the private key.",
     "put {victim} in the friendzone.",
-    "slaps {victim} with a DMCA takedown request!"
+    "slaps {victim} with a DMCA takedown request!",
+    "slaps a rasengan at {victim}"
 ]
 
 ITEMS = [
@@ -779,6 +782,7 @@ ITEMS = [
     "piece of rotten meat",
     "bear",
     "ton of bricks",
+    "RD SHARMA",
 ]
 
 THROW = [
@@ -794,6 +798,7 @@ HIT = [
     "slaps",
     "smacks",
     "bashes",
+    "spanks",
 ]
 
 WHERE = ["in the chest", "on the head", "on the butt", "on the crotch"]
@@ -822,7 +827,7 @@ async def kek(keks):
     """ Check yourself ;)"""
     uio = ["/", "\\"]
     for i in range(1, 15):
-        time.sleep(0.3)
+        time.sleep(0.4)
         await keks.edit(":" + uio[i % 2])
 
 
@@ -869,7 +874,7 @@ async def who(event):
 
     except BaseException:
         await event.edit(
-            "`Can't slap this person, need to fetch some sticks and stones !!`"
+            "`Can't slap this person, need to fetch some sticks and stones or a rocket launcher !!`"
         )
 
 

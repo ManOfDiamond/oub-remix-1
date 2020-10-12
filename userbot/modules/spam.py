@@ -36,6 +36,21 @@ async def tmeme(e):
             "WSpam was executed successfully")
 
 
+@register(outgoing=True, pattern="^.godie$")
+async def tmeme(e):
+    n=0
+    await e.delete()
+    while n<=9:
+        SUP = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
+        die= "die" + str(n)
+        n+=1
+        await e.respond(die.translate(SUP))
+        if BOTLOG:
+        await e.client.send_message(
+            BOTLOG_CHATID, "#GODIE\n"
+            "GODIE was executed successfully")
+
+
 @register(outgoing=True, pattern="^.spam (.*)")
 async def spammer(e):
     counter = int(e.pattern_match.group(1).split(' ', 1)[0])
@@ -85,6 +100,8 @@ CMD_HELP.update({
 \nUsage: Floods text in the chat !!\
 \n\n`.wspam` <text>\
 \nUsage: Spam the text word by word.\
+\n\n`.godie` \
+\nUsage: Die.\
 \n\n`.picspam` <count> <link to image/gif>\
 \nUsage: As if text spam was not enough !!\
 \n\n`.delayspam` <delay> <count> <text>\

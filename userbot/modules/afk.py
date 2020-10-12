@@ -21,16 +21,16 @@ from userbot.events import register
 AFKSTR = [
     "`I'm busy right now. Please talk in a bag and when I come back you can just give me the bag!`",
     "I'm away right now. If you need anything, leave a message after the beep:\n`beeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeep`!",
-    "`You missed me, next time aim better.`",
-    "`I'll be back in a few minutes and if I'm not...,\nwait longer.`",
-    "`I'm not here right now, so I'm probably somewhere else.`",
-    "`Roses are red,\nViolets are blue,\nLeave me a message,\nAnd I'll get back to you.`",
+    "`Ooops guess I left, spam me and I'll block you!.`",
+    "`I'll be back in a few hours or months or years and if I'm not...,\nwait longer.`",
+    "`I'm not here right now, so I'm probably away from here lol.`",
+    "`Roses are red,\nViolets are blue,\nLeave me a message after the beep,\nAnd I'll get back to you.`",
     "`Sometimes the best things in life are worth waiting for…\nI'll be right back.`",
     "`I'll be right back,\nbut if I'm not right back,\nI'll be back later.`",
     "`If you haven't figured it out already,\nI'm not here.`",
     "`Hello, welcome to my away message, how may I ignore you today?`",
     "`I'm away over 7 seas and 7 countries,\n7 waters and 7 continents,\n7 mountains and 7 hills,\n7 plains and 7 mounds,\n7 pools and 7 lakes,\n7 springs and 7 meadows,\n7 cities and 7 neighborhoods,\n7 blocks and 7 houses...\n\nWhere not even your messages can reach me!`",
-    "`I'm away from the keyboard at the moment, but if you'll scream loud enough at your screen, I might just hear you.`",
+    "`I'm away from the keyboard at the moment, even if you scream loud at your screen, I still wont hear you...`",
     "`I went that way\n---->`",
     "`I went this way\n<----`",
     "`Please leave a message and make me feel even more important than I already am.`",
@@ -40,7 +40,7 @@ AFKSTR = [
     "`I'm not available right now so please leave your name, number, and address and I will stalk you later.`",
     "`Sorry, I'm not here right now.\nFeel free to talk to my userbot as long as you like.\nI'll get back to you later.`",
     "`I bet you were expecting an away message!`",
-    "`Life is so short, there are so many things to do...\nI'm away doing one of them..`",
+    "`Life is so short, there are so many things to do...\nI'm away doing one of them... You should too!`",
     "`I am not here right now...\nbut if I was...\n\nwouldn't that be awesome?`",
 ]
 
@@ -74,10 +74,10 @@ async def set_afk(afk_e):
     afk_start = start_1.replace(microsecond=0)
     if string:
         AFKREASON = string
-        await afk_e.edit(f"**Going AFK!**\
+        await afk_e.edit(f"**Master left the chat!**\
         \nReason: `{string}`")
     else:
-        await afk_e.edit("**Going AFK!**")
+        await afk_e.edit("**Master left the chat!**")
     if user.last_name:
         await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ OFFLINE ]"))
     else:
@@ -110,7 +110,7 @@ async def type_afk_is_not_true(notafk):
     afk_end = back_alive.replace(microsecond=0)
     if ISAFK:
         ISAFK = False
-        msg = await notafk.respond("**I'm no longer AFK.**")
+        msg = await notafk.respond("**I'm back!**")
         time.sleep(3)
         await msg.delete()
         await notafk.client(UpdateProfileRequest(first_name=user.first_name, last_name=last1))
@@ -178,7 +178,7 @@ async def mention_afk(mention):
                 afk_since = f"`{int(seconds)}s`"
             if mention.sender_id not in USERS:
                 if AFKREASON:
-                    await mention.reply(f"I'm AFK since {afk_since}.\
+                    await mention.reply(f"I'm OFFLINE since {afk_since}.\
                         \nReason: `{AFKREASON}`")
                 else:
                     await mention.reply(str(choice(AFKSTR)))
@@ -187,7 +187,7 @@ async def mention_afk(mention):
             elif mention.sender_id in USERS:
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await mention.reply(f"I'm still AFK since {afk_since}.\
+                        await mention.reply(f"I'm still OFFLINE since {afk_since}.\
                             \nReason: `{AFKREASON}`")
                     else:
                         await mention.reply(str(choice(AFKSTR)))
@@ -255,7 +255,7 @@ async def afk_on_pm(sender):
                 afk_since = f"`{int(seconds)}s`"
             if sender.sender_id not in USERS:
                 if AFKREASON:
-                    await sender.reply(f"I'm AFK since {afk_since}.\
+                    await sender.reply(f"I'm OFFLINE since {afk_since}.\
                         \nReason: `{AFKREASON}`")
                 else:
                     await sender.reply(str(choice(AFKSTR)))
@@ -264,7 +264,7 @@ async def afk_on_pm(sender):
             elif apprv and sender.sender_id in USERS:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await sender.reply(f"I'm still AFK since {afk_since}.\
+                        await sender.reply(f"I'm still OFFLINE since {afk_since}.\
                             \nReason: `{AFKREASON}`")
                     else:
                         await sender.reply(str(choice(AFKSTR)))

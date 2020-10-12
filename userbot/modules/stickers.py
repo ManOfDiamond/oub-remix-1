@@ -29,6 +29,7 @@ KANGING_STR = [
     "Plagiarising hehe...",
     "Inviting this sticker over to my pack...",
     "Kanging this sticker...",
+    "I shall take away this sticker from you...",
 ]
 
 @register(outgoing=True, pattern="^.kang")
@@ -72,7 +73,7 @@ async def kang(args):
             is_anim = True
             photo = 1
         else:
-            await args.edit("`Unsupported File!`")
+            await args.edit("`WTF IS THIS FILE FORMAT!`")
             return
     else:
         await args.edit("`Couldn't download sticker! Make sure you send a proper sticker/photo.`")
@@ -96,8 +97,8 @@ async def kang(args):
                 # pack
                 emoji = splat[1]
 
-        packname = f"a{user.id}_by_{user.username}_{pack}"
-        packnick = f"@{user.username}'s remix pack Vol.{pack}"
+        packname = f"{user.username}_{pack}"
+        packnick = f"@{user.username}'s sticker pack Vol.{pack}"
         cmd = "/newpack"
         file = io.BytesIO()
 
@@ -128,8 +129,8 @@ async def kang(args):
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-                    packname = f"a{user.id}_by_{user.username}_{pack}"
-                    packnick = f"@{user.username}'s remix pack Vol.{pack}"
+                    packname = f"{user.username}_{pack}"
+                    packnick = f"@{user.username}'s sticker pack Vol.{pack}"
                     await args.edit(
                         "`Switching to Pack "
                         + str(pack)
@@ -177,7 +178,7 @@ async def kang(args):
                         await args.edit(
                             f"`Sticker added in a Different Pack !\
                             \nThis Pack is Newly created!\
-                            \nYour pack can be found [here](t.me/addstickers/{packname})",
+                            \nYour pack can be found at stickers bot",
                             parse_mode="md",
                         )
                         return
@@ -198,6 +199,8 @@ async def kang(args):
                 await bot.send_read_acknowledge(conv.chat_id)
                 await conv.get_response()
                 await conv.send_message("/done")
+                await conv.get_response()
+                await conv.send_message("t.me/addstickers/{packname}")
                 await conv.get_response()
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
@@ -248,7 +251,7 @@ async def kang(args):
 
         await args.edit(
             f"`Sticker kanged successfully!`\
-            \nPack can be found [here](t.me/addstickers/{packname})",
+            \nPack can be found at stickers bot",
             parse_mode="md",
         )
         await asyncio.sleep(7.5)
