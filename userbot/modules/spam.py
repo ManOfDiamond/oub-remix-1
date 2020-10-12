@@ -46,9 +46,9 @@ async def tmeme(e):
         n+=1
         await e.respond(die.translate(SUP))
         if BOTLOG:
-        await e.client.send_message(
-            BOTLOG_CHATID, "#GODIE\n"
-            "GODIE was executed successfully")
+            await e.client.send_message(
+                BOTLOG_CHATID, "#GODIE\n"
+                "GODIE was executed successfully")
 
 
 @register(outgoing=True, pattern="^.spam (.*)")
