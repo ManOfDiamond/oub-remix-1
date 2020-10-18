@@ -23,19 +23,9 @@ GITHUB = "https://github.com"
 
 @register(outgoing=True, pattern=r"^\.magisk$")
 async def magisk(request):
-    magisk_dict = {
-        "Stable": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/stable.json",
-        "Beta": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/beta.json",
-        "Canary": "https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/debug.json",
-    }
-    releases = "Latest Magisk Releases:\n"
-    for name, release_url in magisk_dict.items():
-        data = get(release_url).json()
-        releases += (
-            f'{name}: [ZIP v{data["magisk"]["version"]}]({data["magisk"]["link"]}) | '
-            f'[APK v{data["app"]["version"]}]({data["app"]["link"]}) | '
-            f'[Uninstaller]({data["uninstaller"]["link"]})\n'
-        )
+    stable= "Zip v20.4: https://github.com/topjohnwu/Magisk/releases/download/v20.4/Magisk-v20.4.zip \nAPK: https://github.com/topjohnwu/Magisk/releases/download/manager-v8.0.2/MagiskManager-v8.0.2.apk \nUninstaller: https://github.com/topjohnwu/Magisk/releases/download/v20.4/Magisk-uninstaller-20200323.zip"
+    canary= "Zip v872c5520: https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/magisk-debug.zip \nAPK v339ca6d6: https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/app-debug.apk \nUninstaller: https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/magisk-uninstaller.zip"
+    releases = "Latest Magisk Releases:\n"+ stable + canary
     await request.edit(releases)
 
 
