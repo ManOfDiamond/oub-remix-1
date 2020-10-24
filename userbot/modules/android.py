@@ -23,9 +23,37 @@ GITHUB = "https://github.com"
 
 @register(outgoing=True, pattern=r"^\.magisk$")
 async def magisk(request):
-    stable= "Zip v20.4: https://github.com/topjohnwu/Magisk/releases/download/v20.4/Magisk-v20.4.zip \nAPK: https://github.com/topjohnwu/Magisk/releases/download/manager-v8.0.2/MagiskManager-v8.0.2.apk \nUninstaller: https://github.com/topjohnwu/Magisk/releases/download/v20.4/Magisk-uninstaller-20200323.zip"
-    canary= "Zip v872c5520: https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/magisk-debug.zip \nAPK v339ca6d6: https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/app-debug.apk \nUninstaller: https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/magisk-uninstaller.zip"
-    releases = "Latest Magisk Releases:\n"+ stable + canary
+    magisk_repo = "https://raw.githubusercontent.com/topjohnwu/magisk_files/"
+    magisk_dict = {
+        "⦁ **Stable**":
+        magisk_repo + "master/stable.json",
+        "⦁ **Beta**":
+        magisk_repo + "master/beta.json",
+        "⦁ **Canary**":
+        magisk_repo + "canary/canary.json"
+    }
+    releases = "**Latest Magisk Release**\n\n"
+    for name, release_url in magisk_dict.items():
+        data = get(release_url).json()
+        if "canary" in release_url:
+            data['app']['link'] = (
+                magisk_repo +
+                "canary/" + data['app']['link']
+            )
+            data['magisk']['link'] = (
+                magisk_repo +
+                "canary/" + data['magisk']['link']
+            )
+            data['uninstaller']['link'] = (
+                magisk_repo +
+                "canary/" + data['uninstaller']['link']
+            )
+
+        releases += (
+            f'{name}: [ZIP v{data["magisk"]["version"]}]({data["magisk"]["link"]}) | '
+            f'[APK v{data["app"]["version"]}]({data["app"]["link"]}) | '
+            f'[Uninstaller]({data["uninstaller"]["link"]})\n'
+        )
     await request.edit(releases)
 
 
